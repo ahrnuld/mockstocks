@@ -3,19 +3,19 @@
     <section class="section">
     <div class="container">
       <h1 class="title">Mock stocks</h1>
-    <Stocks/>
+      <stocks/>
        </div>
   </section>
   </div>
 </template>
 
 <script>
-import Stocks from './components/Stocks.vue'
+import stocks from './components/Stocks.vue'
 
 export default {
   name: 'App',
   components: {
-    Stocks
+    stocks
   }
 }
 </script>

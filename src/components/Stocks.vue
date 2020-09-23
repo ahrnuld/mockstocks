@@ -4,24 +4,22 @@
       <thead>
         <td>Name</td>
         <td>Price</td>
+                <td>Actions</td>
       </thead>
       <tbody>
-        <tr v-for="stock in stocks" :key="stock.name">
-          <td>{{stock.name}}</td>
-          <td
-            :class="{'down': stock.price < stock.previousPrice, 'up': stock.price > stock.previousPrice}"
-          >
-            <b>{{stock.currency}} {{formatPrice(stock.price)}}</b>
-          </td>
-        </tr>
+        <stock v-for="stock in stocks" :key="stock.name" :name="stock.name" :price="stock.price" 
+        :previousPrice="stock.previousPrice" :currency="stock.currency" @buy="buyStock" />
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
+import stock from './Stocks/Stock.vue';
+
 export default {
   name: "stocks",
+  components: { stock },
   data() {
     return {
       stocks: [
@@ -43,10 +41,10 @@ export default {
         }
       });
     },
-    formatPrice(value) {
-      let val = (value / 1).toFixed(2).replace(".", ",");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    },
+    buyStock(name)
+    {
+      alert(name);
+    }   
   },
   mounted() {
     setInterval(() => {
@@ -57,10 +55,5 @@ export default {
 </script>
 
 <style>
-.down {
-  color: maroon;
-}
-.up {
-  color: darkgreen;
-}
+
 </style>
